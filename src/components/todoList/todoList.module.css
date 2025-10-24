@@ -1,0 +1,215 @@
+.listContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 32px;
+	background-color: #f5f7fb;
+	border-radius: 12px;
+	width: 100%;
+	max-width: 750px;
+	height: 100%;
+	margin: 40px auto;
+}
+
+.listHeading {
+	font-size: 28px;
+	color: #1e293b;
+}
+
+.todoTextInputContainer {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	gap: 20px;
+	margin-bottom: 50px;;
+}
+
+.todoTextInput {
+	width: 77.5%;
+	box-sizing: border-box;
+	margin-top: 24px;
+	padding: 12px 14px;
+	border-radius: 8px;
+	border: 1px solid #cbd5e1;
+	font-size: 15px;
+	color: #1e293b;
+	background-color: #f9fafb;
+	outline: none;
+}
+
+.todoTextInputButtonsContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
+
+.sortButton {
+	position: relative;
+	width: 45px;
+	height: 45px;
+	padding: 0;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.sortButtonIcon {
+	display: block;
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+	margin-top: 24px;
+	background-image: url('../../../public/sort.png');
+  	background-size: cover;
+  	background-repeat: no-repeat;
+  	background-position: center;
+}
+
+.addItemButton {
+	min-width: 140px;
+	background-color: #c7d8ee;
+	color: #ffffff;
+	font-weight: 600;
+	border: none;
+	border-radius: 8px;
+	padding: 12px;
+	font-size: 15px;
+	cursor: pointer;
+	margin-top: 24px;
+}
+
+.addItemButton:hover:not(:disabled) {
+	background-color: #9bb0cd;
+	box-shadow: #8295af;
+}
+
+.addItemButton:disabled {
+	background-color: #cbd5e1;
+	color: #475569;
+	cursor: not-allowed;
+	box-shadow: none;
+}
+
+.addItemButton:focus {
+	outline: none;
+	border: 0.5px solid #475569;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 0%;
+	gap: 30px;
+	list-style-type: none;
+}
+
+.todoTitleContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
+
+.listInput {
+	flex-shrink: 0;
+	width: 20px;
+  	height: 20px;
+  	accent-color: #506b87;
+  	cursor: pointer;
+}
+
+.listItem {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 12px 14px;
+	border-radius: 8px;
+	border: 1px solid #cbd5e1;
+	font-size: 16px;
+	color: #1e293b;
+	background-color: #f9fafb;
+}
+
+.listItem input:checked + label {
+	text-decoration: line-through;
+	color: #888;
+}
+
+.todoButtonsContainer {
+	display: flex;
+	flex-direction: column;
+	margin-left: 30px;
+	gap: 15px;
+}
+
+.editButton {
+	position: relative;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.todoEditIcon {
+	display: block;
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+	background-image: url('../../../public/free-icon-edit-tools-9800979.png');
+  	background-size: cover;
+  	background-repeat: no-repeat;
+  	background-position: center;
+}
+
+.deleteButton {
+	position: relative;
+	width: 25px;
+	height: 25px;
+	padding: 0;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.todoDeleteIcon {
+	display: block;
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+	background-image: url('../../../public/free-icon-cross-18113962.png');
+  	background-size: cover;
+  	background-repeat: no-repeat;
+  	background-position: center;
+}
+
+.loader {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 25px;
+	height: 25px;
+	border: 5px solid grey;
+	border-radius: 50%;
+	border-left-color: transparent;
+	animation: loader 1s infinite;
+}
+
+@keyframes loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
