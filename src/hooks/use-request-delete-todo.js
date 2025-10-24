@@ -22,7 +22,7 @@ export const useRequestDeleteTodo = ({ todos, setTodos, API_URL}) => {
 				if (!loadedData.ok) throw new Error('Ошибка удаления');
 			})
 			.catch((error) => {
-				console.error('Не удалось удалить задание', error);
+				console.error('Не удалось удалить дело', error);
 
 				setTodos((todos) => [...todos, currentTodo]);
 

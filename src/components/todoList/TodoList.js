@@ -1,15 +1,25 @@
 import { useState } from 'react';
 import styles from './todoList.module.css';
-import {useRequestAddTodo, useRequestGetTodoList, useRequestUpdateTodoStatus, useRequestDeleteTodo, useRequestUpdateTodoTitle} from '../../hooks'
+import {
+	useRequestAddTodo,
+	useRequestGetTodoList,
+	useRequestUpdateTodoStatus,
+	useRequestDeleteTodo,
+	useRequestUpdateTodoTitle,
+	useRequestSearchTodo
+} from '../../hooks'
 import { EditTodoModal } from '../modal/EditTodoModal';
-//npx json-server@0.17.4 --watch src/db.json --port 3005
 
 export const TodoList = () => {
 	const [todos, setTodos] = useState([]);
+
 	const [inputValue, setInputValue] = useState('');
+	const [inputSeachValue, setInputSearchValue] = useState('');
+
 	const [isEditing, setIsEditing] = useState(false);
 	const [editTodoId, setEditTodoId] = useState(null);
 	const [editDraft, setEditDraft] = useState('');
+
 	const [isSorted, setIsSorted] = useState(false);
 
 	const API_URL = 'http://localhost:3005/todos';
@@ -20,12 +30,18 @@ export const TodoList = () => {
 
 	const { handleCheckboxChange } = useRequestUpdateTodoStatus( { todos, setTodos, API_URL } );
 
-	const { deletedTodo, requestDeleteTodo } = useRequestDeleteTodo({ todos, setTodos, API_URL })
+	const { deletedTodo, requestDeleteTodo } = useRequestDeleteTodo({ todos, setTodos, API_URL });
 
-	const { updatingTodoId, requestUpdateTodoTitle } = useRequestUpdateTodoTitle({ setTodos, API_URL})
+	const { updatingTodoId, requestUpdateTodoTitle } = useRequestUpdateTodoTitle({ setTodos, API_URL});
+
+	const { filteredTodos } = useRequestSearchTodo({ todos, setTodos, inputSeachValue, API_URL });
 
 	const handleInputChange = (event) => {
 		setInputValue(event.target.value);
+	};
+
+	const handleSearchInputChange = (event) => {
+		setInputSearchValue(event.target.value);
 	};
 
 	const openEditModal = (id, title) => {
@@ -60,11 +76,11 @@ export const TodoList = () => {
 
 			<div className={styles.todoTextInputContainer}>
 				<input
-				className={styles.todoTextInput}
-				placeholder='Введите новое задание'
-        		type="text"
-        		value={inputValue}
-        		onChange={handleInputChange}
+					className={styles.todoTextInput}
+					placeholder='Введите новое дело'
+					type="text"
+					value={inputValue}
+					onChange={handleInputChange}
       			/>
 
 				<div className={styles.todoTextInputButtonsContainer}>
@@ -85,6 +101,14 @@ export const TodoList = () => {
 					</button>
 				</div>
 			</div>
+
+			<input
+				className={styles.todoSearchInput}
+				placeholder='Поиск дел'
+				type="text"
+				value={inputSeachValue}
+				onChange={handleSearchInputChange}
+      		/>
 
 			{isLoading
 				? <div className={styles.loader}></div>
@@ -107,7 +131,7 @@ export const TodoList = () => {
 								<button
 									className={styles.editButton}
 									onClick={() => openEditModal(id, title)}
-									title="Редактировать задачу"
+									title="Редактировать дело"
 									disabled={updatingTodoId === id}
 								>
 									<span className={styles.todoEditIcon}></span>
@@ -116,7 +140,7 @@ export const TodoList = () => {
 								<button
 									className={styles.deleteButton}
 									onClick={() => requestDeleteTodo(id)}
-									title="Удалить задачу"
+									title="Удалить дело"
 									disabled={deletedTodo === id}
 								>
 									<span className={styles.todoDeleteIcon}></span>

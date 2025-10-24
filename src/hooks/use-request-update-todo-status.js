@@ -20,7 +20,7 @@ export const useRequestUpdateTodoStatus = ({ todos, setTodos, API_URL}) => {
 				if (!loadedData.ok) throw new Error('Ошибка обновления статуса');
 			})
 			.catch((error) => {
-				console.error('Не удалось обновить статус задания', error);
+				console.error('Не удалось обновить статус дело', error);
 
 				setTodos((todos) =>
 					todos.map((todo) =>

@@ -28,7 +28,7 @@ export const useRequestUpdateTodoTitle = ({ setTodos, API_URL }) => {
 				if (!loadedData.ok) throw new Error('Ошибка редактирования');
 			})
 			.catch((error) => {
-				console.error('Не удалось отредактировать задание', error);
+				console.error('Не удалось отредактировать дело', error);
 
 				setTodos(todos =>
 					todos.map(todo => (todo.id === id ? { ...todo, title: previousTitle } : todo))

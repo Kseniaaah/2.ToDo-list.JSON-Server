@@ -11,7 +11,7 @@ export const EditTodoModal = ({ isOpen, value, onChange, onSave, onClose, loadin
 			shouldCloseOnOverlayClick={!loading}
 		>
 			<div className={styles.modalContainer}>
-				<h2 className={styles.modalHeading}>Редактирование задачи</h2>
+				<h2 className={styles.modalHeading}>Редактирование дела</h2>
 
 				<input
 					className={styles.modalInput}

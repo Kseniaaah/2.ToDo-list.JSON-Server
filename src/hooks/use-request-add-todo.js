@@ -1,6 +1,12 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-export const useRequestAddTodo = ({ todos, setTodos, inputValue, setInputValue, API_URL }) => {
+export const useRequestAddTodo = ({
+	todos,
+	setTodos,
+	inputValue,
+	setInputValue,
+	API_URL,
+}) => {
 	const [isCreating, setIsCreating] = useState(false);
 
 	const requestAddTodo = () => {
@@ -27,14 +33,13 @@ export const useRequestAddTodo = ({ todos, setTodos, inputValue, setInputValue, 
 				setInputValue('');
 			})
 			.catch((error) => {
-				console.error('Не удалось добавить задачу', error);
+				console.error('Не удалось добавить дело', error);
 			})
 			.finally(() => setIsCreating(false));
-
 	};
 
 	return {
 		isCreating,
 		requestAddTodo,
-	}
+	};
 };
