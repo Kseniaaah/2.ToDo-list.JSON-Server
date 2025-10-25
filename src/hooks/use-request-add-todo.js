@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 export const useRequestAddTodo = ({
-	todos,
 	setTodos,
 	inputValue,
 	setInputValue,

@@ -10,6 +10,8 @@ import {
 } from '../../hooks'
 import { EditTodoModal } from '../modal/EditTodoModal';
 
+const API_URL = 'http://localhost:3005/todos';
+
 export const TodoList = () => {
 	const [todos, setTodos] = useState([]);
 
@@ -20,13 +22,12 @@ export const TodoList = () => {
 	const [editTodoId, setEditTodoId] = useState(null);
 	const [editDraft, setEditDraft] = useState('');
 
+
 	const [isSorted, setIsSorted] = useState(false);
 
-	const API_URL = 'http://localhost:3005/todos';
+	const { isLoading } = useRequestGetTodoList({ setTodos, API_URL});
 
-	const { isLoading } = useRequestGetTodoList({todos, setTodos, API_URL});
-
-	const { isCreating, requestAddTodo } = useRequestAddTodo({ todos, setTodos, inputValue, setInputValue, API_URL} );
+	const { isCreating, requestAddTodo } = useRequestAddTodo({ setTodos, inputValue, setInputValue, API_URL} );
 
 	const { handleCheckboxChange } = useRequestUpdateTodoStatus( { todos, setTodos, API_URL } );
 
@@ -35,6 +36,7 @@ export const TodoList = () => {
 	const { updatingTodoId, requestUpdateTodoTitle } = useRequestUpdateTodoTitle({ setTodos, API_URL});
 
 	const { filteredTodos } = useRequestSearchTodo({ todos, setTodos, inputSeachValue, API_URL });
+	
 
 	const handleInputChange = (event) => {
 		setInputValue(event.target.value);

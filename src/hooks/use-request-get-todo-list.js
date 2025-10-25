@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useRequestGetTodoList = ({ todos, setTodos, API_URL }) => {
+export const useRequestGetTodoList = ({ setTodos, API_URL }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
